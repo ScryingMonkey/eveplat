@@ -1,0 +1,22 @@
+.test-border {
+  border: 1px solid red;
+}
+.sidebar {
+  grid-area: sidebar;
+  height: 90vh;
+}
+.content {
+  grid-area: content;
+}
+.header {
+  grid-area: header;
+  height: 10vh;
+}
+.wrapper {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 15vw 85vw;
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+}
