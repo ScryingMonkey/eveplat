@@ -6,11 +6,12 @@ const defaultContext = {
     testKey: "testValue",
     title: "Default Title",
     logo: logo,
-    sidebarItems: [
-      { label: "Events", id: uuid.v4(), route: "" },
-      { label: "Venues", id: uuid.v4(), route: "" },
-      { label: "Reports", id: uuid.v4(), route: "" },
-      { label: "Settings", id: uuid.v4(), route: "" }
+    routes: [
+      { label: "Home", route: "/", exact: true },
+      { label: "Events", route: "/events" },
+      { label: "Venues", route: "/venues" },
+      { label: "Reports", route: "/reports" },
+      { label: "Settings", route: "/settings" }
     ]
   },
   style: {

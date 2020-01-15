@@ -5,7 +5,7 @@ const ContentPane: React.FunctionComponent<{}> = props => {
   const context = useContext(Context);
   return (
     <div className={context.style.content}>
-      <h1 onClick={context.funcs.testFunc}>ContentPane</h1>
+      <h1 onClick={context.funcs.testFunc}>Content Home</h1>
     </div>
   );
 };

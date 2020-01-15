@@ -1,20 +1,34 @@
 import React from "react";
-import { TopBar, SideBar, ContentPane } from "./_index";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import {
+  TopBar,
+  SideBar,
+  ContentPane,
+  ContentEvents,
+  ContentVenues
+} from "./_index";
 import "../assets/Layout.css";
 
 const Layout: React.FunctionComponent<{}> = () => {
   return (
-    <div className="wrapper">
-      <div className="header">
-        <TopBar />
+    <BrowserRouter>
+      <div className="wrapper">
+        <div className="header">
+          <TopBar />
+        </div>
+        <div className="sidebar">
+          <SideBar />
+        </div>
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={ContentPane} />
+            <Route exact path="/events" component={ContentEvents} />
+            <Route path="/venues" component={ContentVenues} />
+          </Switch>
+        </div>
       </div>
-      <div className="sidebar">
-        <SideBar />
-      </div>
-      <div className="content">
-        <ContentPane />
-      </div>
-    </div>
+    </BrowserRouter>
   );
 };
 export default Layout;
