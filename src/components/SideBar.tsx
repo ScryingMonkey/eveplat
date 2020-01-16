@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import Context from "../contexts/_index";
 
 const SideBar: React.FunctionComponent<{}> = props => {
-  const context = useContext(Context);
+  const { context, style, funcs } = useContext(Context);
   return (
-    <div className={context.style.sidebar}>
-      {context.state.routes.map((item, index) => {
+    <div className={style.sidebar}>
+      {context.routes.map((item, index) => {
         return (
           <div key={index}>
             <Link
               to={item.route}
-              className={context.style.sidebarListItem}
-              onClick={() => context.funcs.sidebarItemClick(item.label)}
+              className={style.sidebarListItem}
+              onClick={() => funcs.sidebarItemClick(item.label)}
             >
               {item.label}
             </Link>

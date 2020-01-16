@@ -1,5 +1,17 @@
+import context from "./App-state";
+import funcs from "./App-funcs";
+import style from "./App-style";
 import Context, { ContextConsumer, ContextProvider } from "./App-context";
-import defaultContext from "./default-context";
+import Firebase, { FirebaseContext } from "./firebase-context/_index";
 
-export { Context, ContextConsumer, ContextProvider, defaultContext };
+export {
+  Firebase,
+  FirebaseContext,
+  Context,
+  ContextConsumer,
+  ContextProvider,
+  context,
+  funcs,
+  style
+};
 export default Context;
