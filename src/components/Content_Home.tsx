@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../contexts/_index";
 
 const ContentPane: React.FunctionComponent<{}> = props => {
-  const { context, funcs, style } = useContext(Context);
+  const { funcs, style } = useContext(Context);
 
   return (
     <div className={style.content}>

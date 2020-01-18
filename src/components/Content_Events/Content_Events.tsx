@@ -1,34 +1,37 @@
-import React, { useContext, useState } from "react";
-import firebase, { firestore } from "firebase";
-import { Context, FirebaseContext, ContextConsumer } from "../contexts/_index";
-import { TicketEvent } from "../types/TicketEvent";
+import React, { useContext, Suspense } from "react";
+import { firestore } from "firebase";
+import { Context, FirebaseContext } from "../../contexts/_index";
+import { TicketEvent } from "../../types/TicketEvent";
+import { AddTicketEvent, CbListHeader, EventsList } from "../_index";
 
 class ContentEvents extends React.Component<
   {},
-  { nameInput: string; events: TicketEvent[] },
+  { nameInput: string; events: TicketEvent[]; showAddEvents: Boolean },
   any
 > {
   constructor(props) {
     super(props);
     this.state = {
       nameInput: "Test Name",
-      events: []
+      events: [],
+      showAddEvents: false
     };
   }
 
   componentDidMount() {
     this.getEventsFromFirebase();
   }
-
   updateInput = e => {
-    this.setState({
-      nameInput: e.target.value
-    });
+    this.setState({ nameInput: e.target.value });
   };
-
+  toggleAddEvent = () => {
+    this.setState({ showAddEvents: !this.state.showAddEvents });
+    console.log(`showAddEvents:${this.state.showAddEvents}`);
+  };
   addTicketEvent = e => {
     e.preventDefault();
-    let te: TicketEvent = new TicketEvent(this.state.nameInput);
+    let te: TicketEvent = new TicketEvent();
+    te.setConfig({ name: this.state.nameInput });
     this.setState({
       nameInput: ""
     });
@@ -42,14 +45,14 @@ class ContentEvents extends React.Component<
     }));
   };
   getEventsRef() {
-    return firebase.firestore().collection("events");
+    return firestore().collection("events");
   }
   getEventsFromFirebase() {
     let es = this.getEventsRef()
       .get()
       .then(res => {
         let docs = res.docs.map(doc => {
-          let te = new TicketEvent("temp");
+          let te = new TicketEvent();
           te.setConfig(doc.data());
           return te;
         });
@@ -86,26 +89,18 @@ class ContentEvents extends React.Component<
   render() {
     return (
       <div className="content">
-        <h1>Events</h1>
-
-        <form onSubmit={this.addTicketEvent}>
-          <input
-            type="text"
-            name="eventName"
-            placeholder="Full name"
-            onChange={this.updateInput}
-            value={this.state.nameInput}
-          />
-          <input type="submit" />
-        </form>
-
-        {this.state.events.map((te: TicketEvent, i: number) => {
-          return (
-            <div key={i}>
-              [{i}] name: {te.name} id: {te.id}
-            </div>
-          );
-        })}
+        <CbListHeader
+          toggleLabel="Add Event (+)"
+          untoggleLabel="Save"
+          toggleHandler={this.toggleAddEvent}
+        />
+        {this.state.showAddEvents ? (
+          <AddTicketEvent />
+        ) : (
+          <Suspense fallback={<div>"Loading..."</div>}>
+            <EventsList events={this.state.events} className="" />
+          </Suspense>
+        )}
       </div>
     );
   }

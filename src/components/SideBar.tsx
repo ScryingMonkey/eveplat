@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../contexts/_index";
 
-const SideBar: React.FunctionComponent<{}> = props => {
+const SideBar: React.FunctionComponent<{}> = () => {
   const { context, style, funcs } = useContext(Context);
   return (
     <div className={style.sidebar}>

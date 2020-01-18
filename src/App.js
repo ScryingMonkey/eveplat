@@ -1,5 +1,6 @@
 import React from "react";
 import "./assets/App.css";
+import "./assets/w3.css";
 import { ContextProvider, context, funcs, style } from "./contexts/_index";
 import { Layout } from "./components/_index";
 
@@ -22,7 +23,9 @@ class App extends React.Component {
   render() {
     return (
       <ContextProvider value={{ context, style, funcs }}>
-        <Layout />
+        <div className="App">
+          <Layout />
+        </div>
       </ContextProvider>
     );
   }
