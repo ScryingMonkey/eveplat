@@ -1,17 +1,27 @@
-import context from "./App-state";
-import funcs from "./App-funcs";
-import style from "./App-style";
-import Context, { ContextConsumer, ContextProvider } from "./App-context";
-import Firebase, { FirebaseContext } from "./firebase-context/_index";
+import AppContext from "./AppContext/AppContext";
+import Firebase, { FirebaseContext } from "./FirebaseContext/_index";
+import globalReducer from "./GlobalReducer";
+import GlobalState from "./GlobalState";
+import { TicketEvent } from "../types/TicketEvent";
 
-export {
-  Firebase,
-  FirebaseContext,
-  Context,
-  ContextConsumer,
-  ContextProvider,
-  context,
-  funcs,
-  style
+export type CbRoute = {
+  label: string;
+  route: string;
+  exact?: boolean;
 };
-export default Context;
+export enum ActionType {
+  ADD_ROUTE = "ADD_ROUTE",
+  DELETE_ROUTE = "DELETE_ROUTE"
+}
+export type Payload = {
+  id?: string;
+  route?: CbRoute;
+  label?: string;
+  te?: TicketEvent;
+};
+export type Action = {
+  type: string;
+  payload?: Payload;
+};
+
+export { Firebase, FirebaseContext, AppContext, GlobalState, globalReducer };

@@ -5,8 +5,9 @@ const testFunc = () => {
   alert("test function from context!");
 };
 
-const funcs = {
+const appFuncs = {
   sidebarItemClick: sidebarItemClick,
   testFunc: testFunc
 };
-export default funcs;
+export type AppFuncs = typeof appFuncs;
+export default appFuncs;

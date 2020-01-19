@@ -11,6 +11,7 @@ import ContentEvents, {
 import InputField from "./InputField/InputField";
 import ButtonToggle from "./ButtonToggle/ButtonToggle";
 import { CbList, CbListHeader, CbListItem } from "./CbList/_index";
+import ButtonIcon from "./ButtonIcon/ButtonIcon";
 
 export {
   TopBar,
@@ -26,5 +27,6 @@ export {
   EventListItem,
   CbList,
   CbListHeader,
-  CbListItem
+  CbListItem,
+  ButtonIcon
 };

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import Context from "../contexts/_index";
+import { AppContext } from "../contexts/_index";
 
 const TopBar: React.FunctionComponent<{}> = () => {
-  const { context, style } = useContext(Context);
+  const { title, logo, styles } = useContext(AppContext).state;
   return (
-    <div className={style.topbar}>
-      <img src={context.logo} className={style.topbarLogo} alt="logo" />
-      <span className={style.topbarTitle}>{context.title}</span>
+    <div className={styles.topbar}>
+      <img src={logo} className={styles.topbarLogo} alt="logo" />
+      <span className={styles.topbarTitle}>{title}</span>
     </div>
   );
 };

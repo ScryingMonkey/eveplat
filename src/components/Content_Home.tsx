@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Context } from "../contexts/_index";
+import { AppContext } from "../contexts/_index";
 
 const ContentPane: React.FunctionComponent<{}> = props => {
-  const { funcs, style } = useContext(Context);
+  const { state } = useContext(AppContext);
+  const { styles, funcs } = state;
 
   return (
-    <div className={style.content}>
+    <div className={styles.content}>
       <h1 onClick={funcs.testFunc}>Home</h1>
       <p>This is a test app to demonstrate basic patterns in React.</p>
     </div>

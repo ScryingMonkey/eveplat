@@ -1,6 +1,6 @@
 import React, { useContext, Suspense } from "react";
 import { firestore } from "firebase";
-import { Context, FirebaseContext } from "../../contexts/_index";
+import { AppContext, FirebaseContext } from "../../contexts/_index";
 import { TicketEvent } from "../../types/TicketEvent";
 import { AddTicketEvent, CbListHeader, EventsList } from "../_index";
 

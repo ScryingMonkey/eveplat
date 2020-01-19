@@ -1,4 +1,4 @@
-const style = {
+const initialStyles = {
   topbar: "topbar",
   topbarTitle: "topbar-title",
   topbarLogo: "App-logo topbar-logo",
@@ -18,4 +18,5 @@ const style = {
     "divider-color": "#bdbdbd"
   }
 };
-export default style;
+export type InitialStyles = typeof initialStyles;
+export default initialStyles;
