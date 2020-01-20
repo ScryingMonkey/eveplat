@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
+import {AppContext} from '../../contexts/_index';
 import { TicketEvent } from "../../types/TicketEvent";
 import { InputField } from "../_index";
 
 const AddTicketEvent = () => {
   const [te, setTe] = useState(new TicketEvent());
-  // const [events, setEvents] = useContext(AppContext);
+  const {addEvent} = useContext(AppContext).f;
+
   const inputs = [
     { name: "name", label: "Name", type: "type" },
     { name: "venueId", label: "Venue", type: "type" },
@@ -20,7 +22,8 @@ const AddTicketEvent = () => {
 
   const addTicketEvent = e => {
     e.preventDefault();
-    // setEvents(prevEvents => [...prevEvents, te]);
+    addEvent({event:te});
+    console.log("Adding te:");
     console.log(te);
   };
 

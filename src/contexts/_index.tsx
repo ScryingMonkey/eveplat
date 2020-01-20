@@ -11,13 +11,17 @@ export type CbRoute = {
 };
 export enum ActionType {
   ADD_ROUTE = "ADD_ROUTE",
-  DELETE_ROUTE = "DELETE_ROUTE"
+  ADD_EVENT = "ADD_EVENT",
+  DELETE_EVENT = "DELETE_EVENT",
+  UPDATE_EVENT = "UPDATE_EVENT",
+  SET_EVENTS = "FETCH_EVENTS",
 }
 export type Payload = {
   id?: string;
   route?: CbRoute;
   label?: string;
-  te?: TicketEvent;
+  event?: TicketEvent;
+  events?: TicketEvent[];
 };
 export type Action = {
   type: string;
