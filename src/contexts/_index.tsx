@@ -1,7 +1,7 @@
-import AppContext from "./AppContext/AppContext";
+import AppContext from "./Global/AppContext";
 import fb,{Firebase} from "./Firebase/_index";
-import globalReducer from "./GlobalReducer";
-import GlobalState from "./GlobalState";
+import globalReducer from "./Global/GlobalReducer";
+import GlobalState from "./Global/GlobalState";
 import { TicketEvent } from "../types/TicketEvent";
 
 export type CbRoute = {

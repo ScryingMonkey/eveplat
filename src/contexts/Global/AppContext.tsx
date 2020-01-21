@@ -1,5 +1,5 @@
-import React, { createContext } from "react";
-import initialState, { InitialState } from "./InitialState";
+import { createContext } from "react";
+import initialState from "./InitialState";
 
 type AppContext = {
   state: any;

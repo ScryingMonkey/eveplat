@@ -50,7 +50,7 @@ class Firebase {
   subscribeToCollectionFromFirestore =(fb:Firebase,key:string,thing:any,updateFunc:any)=> {
     fb.colls[key].ref.onSnapshot(res => {
       let arr = res.docs.map(doc => {
-        let t = new thing;
+        let t = new thing();
         t.setConfig(doc.data().event);
         return t;
       });

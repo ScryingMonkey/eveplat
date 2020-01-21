@@ -1,7 +1,7 @@
 import logo from "../../assets/logo.svg";
 import { TicketEvent } from "../../types/TicketEvent";
 import initialStyles, { InitialStyles } from "./InitialStyles";
-import appFuncs, { AppFuncs } from "../GlobalFuncs";
+import appFuncs, { AppFuncs } from "./GlobalFuncs";
 import { CbRoute } from "../_index";
 
 // export type InitialState = typeof initialState;

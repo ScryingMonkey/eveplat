@@ -20,7 +20,7 @@ const ButtonIcon: React.FC<{
 
   return (
     <span className={"button-icon" + shape} onClick={() => props.onClick}>
-      <img src={icon} />
+      <img src={icon} alt="icon" />
     </span>
   );
 };

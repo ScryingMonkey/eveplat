@@ -8,19 +8,19 @@ import {
   Payload,
   Firebase,
   fb
-} from "./_index";
-import initialState from "./AppContext/InitialState";
-import {TicketEvent} from '../types/TicketEvent';
+} from "../_index";
+import initialState from "./InitialState";
+import {TicketEvent} from '../../types/TicketEvent';
 
 interface ClassThing {
   id: string,
   setConfig: (Object) => void,
   getObject: () => Object
 }
-const setThingInFirestore = (ref:any,thing:ClassThing) => {
-  ref.doc(thing.id).set(thing.getObject())
-    // .then(res => this.getEventsFromFirebase());
-}
+// const setThingInFirestore = (ref:any,thing:ClassThing) => {
+//   ref.doc(thing.id).set(thing.getObject())
+//     // .then(res => this.getEventsFromFirebase());
+// }
 
 const GlobalState = props => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
@@ -53,7 +53,7 @@ const GlobalState = props => {
     
   };
 
-  const setUpFirebase =(fb:Firebase)=> {
+  const setUpFirebase =(fb:Firebase):void => {
     fb.subscribeToCollectionFromFirestore(fb,'events',TicketEvent,f.setEvents);
     //TODO: set up venue subscription
   }

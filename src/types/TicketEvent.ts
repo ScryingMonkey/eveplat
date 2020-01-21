@@ -31,47 +31,28 @@ export class TicketEvent {
   setConfig(o: object):void {
     Object.keys(o).forEach(k => {
       switch(k){
-        case ('startDate' || 'endDate'):
-          this[k] = new Date((o[k].seconds) * 1000);
-        case ('ticketsAvailable' || 'ticketSold' || 'ticketCost'):
+        case 'endDate':
+        case 'startDate':
+          this[k] = (o[k].toDate());
+          console.log(`setconfig(): converted ts to date for ${k}: ${typeof o[k]} => ${typeof this[k]}`);
+          console.log(`name: ${o['name']}`)
+          console.log(o[k]);
+          console.log(this[k]);
+          break;
+        case 'ticketsAvailable':
+        case 'ticketSold':
+        case 'ticketCost':
           this[k] = parseInt(o[k]);
+          break;
         default:
           this[k] = o[k]
       }
     });
+    console.log(this);
   }
   getObject() {
     let o: { [key: string]: any } = {};
     Object.keys(this).forEach(k => o[k] = this[k]);
     return o;
   }
-
-  // Date methods
-  getUnixSecondsFromTimestampString(s:string):number{
-    // let s = "Timestamp(seconds=1579574527, nanoseconds=985000000)";
-    try{
-      let oi = (s.indexOf("="))+1;
-      let fi = (s.indexOf(","))-oi;
-      return parseInt(s.substr(oi,fi));
-    } catch(err) {
-      throw err;
-    }
-  }
-  convertToShortDate(ts:any){
-    console.log(`...convertToShortDate(date)`);
-    const date = new Date(ts.seconds * 1000);
-    console.log(date);
-    return `${date.getDate()}/${date.getMonth()}/${date.getDate()}`;
-  }
-  convertToLongDate(ts:any){
-    console.log(`...convertToLongDate(date)`);
-    const date = new Date(ts.seconds * 1000);
-    console.log(date);
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June", "July", 
-      "August", "September", "October", "November", "December"
-    ];
-    return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-  }
-
 }

@@ -8,7 +8,7 @@ const ContentEvents:React.FC<
 > = props => {
 
   const [showAddEvent, setShowAddEvent] = useState(false);
-  const {state,f} = useContext(AppContext);
+  const {state} = useContext(AppContext);
 
   const toggleAddEvent = () => {
     setShowAddEvent(!showAddEvent );
