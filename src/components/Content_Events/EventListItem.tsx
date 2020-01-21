@@ -1,26 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import { TicketEvent } from "../../types/TicketEvent";
 import { ButtonIcon } from "../_index";
-import { AppContext, FirebaseContext } from "../../contexts/_index";
+import { AppContext } from "../../contexts/_index";
 
 const EventListItem: React.FunctionComponent<{
   te: TicketEvent;
   listkey: string;
-}> = props => {
-  const fb = useContext(FirebaseContext);
-  const deleteHandler = (e: Event) => {
-    fb.deleteDoc("events", props.te.id);
-  };
+}> = ({listkey,te}) => {
+  const {f} = useContext(AppContext);
+
   return (
-    <div className="cb-list-item w3-card-2" key={props.listkey}>
+    <div className="cb-list-item w3-card-2" >
       <header>
-        <span className="cb-badge">{props.listkey}</span>{" "}
-        <h1>{props.te.name}</h1>
-        <ButtonIcon icon="" label="D" round={true} onClick={deleteHandler} />
+        <span className="cb-badge">{listkey}</span>{" "}
+        <h1>{te.name}</h1>
+        <button onClick={() => f.deleteEvent(te)}>Delete</button>
       </header>
-      <div>Ticket Cost: ${props.te.ticketCost.toString()}</div>
-      <div>Event begins: {props.te.startDate.toDateString()}</div>
-      <div>Event Ends: {props.te.endDate.toDateString()}</div>
+      <div>Ticket Cost: ${`${te.ticketCost.toString()}`}</div>
+      <div>Event begins: {`${te.convertToLongDate(te.startDate)}`}</div>
+      <div>Event Ends: {`${te.convertToLongDate(te.endDate)}`}</div>
     </div>
   );
 };

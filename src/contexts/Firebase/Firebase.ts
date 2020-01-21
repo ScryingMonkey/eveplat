@@ -47,16 +47,40 @@ class Firebase {
     }
   };
 
+  subscribeToCollectionFromFirestore =(fb:Firebase,key:string,thing:any,updateFunc:any)=> {
+    fb.colls[key].ref.onSnapshot(res => {
+      let arr = res.docs.map(doc => {
+        let t = new thing;
+        t.setConfig(doc.data().event);
+        return t;
+      });
+      // console.log('...arr after map');
+      // console.log(arr);
+      updateFunc(arr);
+      // console.log(`Update coll [${key}]`);
+      // console.log(arr);
+    });
+  }
+
   // const increment = firestore.FieldValue.increment(1);
-  addDoc = (collName, docId, doc) => {
+
+  addDoc = (collName:string, docId:string, doc:any) => {
     console.log(`...addDoc(${collName},${docId},doc)`);
     console.log(doc);
     this.colls[collName].ref.doc(docId).set(doc);
-    this.colls["events"].ref.doc(docId).set(doc);
   };
-  deleteDoc = (collName, docId) => {
+  deleteDoc = (collName, docId:string) => {
     console.log(`deleteDoc(${collName},${docId})`);
     this.colls[collName].ref.doc(docId).delete();
   };
+  setDoc = (collName:string, docId:string, doc:any)=>{
+    console.log(`...addDoc(${collName},${docId},doc)`);
+    console.log(doc);
+    this.colls[collName].ref.doc(docId).set(doc);
+  }
 }
-export default Firebase;
+export {Firebase};
+
+const fb = new Firebase();
+export default fb;
+

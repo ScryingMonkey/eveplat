@@ -1,5 +1,5 @@
 import AppContext from "./AppContext/AppContext";
-import Firebase, { FirebaseContext } from "./FirebaseContext/_index";
+import fb,{Firebase} from "./Firebase/_index";
 import globalReducer from "./GlobalReducer";
 import GlobalState from "./GlobalState";
 import { TicketEvent } from "../types/TicketEvent";
@@ -28,4 +28,4 @@ export type Action = {
   payload?: Payload;
 };
 
-export { Firebase, FirebaseContext, AppContext, GlobalState, globalReducer };
+export { fb,Firebase, AppContext, GlobalState, globalReducer };

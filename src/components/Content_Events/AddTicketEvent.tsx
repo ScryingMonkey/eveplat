@@ -22,14 +22,16 @@ const AddTicketEvent = () => {
 
   const addTicketEvent = e => {
     e.preventDefault();
-    addEvent({event:te});
-    console.log("Adding te:");
+    console.log("Adding te:TicketEvent...");
     console.log(te);
+    const teo = te.getObject();
+    console.log(teo);
+    addEvent(teo.id,{event:teo});
   };
 
   const updateTe = (key: string, val: string) => {
-    let nte = te.setConfig({ [key]: val });
-    setTe(nte);
+    te.setConfig({ [key]: val });
+    setTe(te);
   };
 
   return (

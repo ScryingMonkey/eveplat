@@ -1,4 +1,3 @@
-import React from "react";
 import { Action, ActionType} from "./_index";
 import {TicketEvent} from '../types/TicketEvent';
 
