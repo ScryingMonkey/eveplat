@@ -9,12 +9,13 @@ export type CbRoute = {
   route: string;
   exact?: boolean;
 };
-export enum ActionType {
+export enum ActionType {  //move to global reducer?
   ADD_ROUTE = "ADD_ROUTE",
   ADD_EVENT = "ADD_EVENT",
   DELETE_EVENT = "DELETE_EVENT",
   UPDATE_EVENT = "UPDATE_EVENT",
   SET_EVENTS = "FETCH_EVENTS",
+  UPDATE_NEW_TE = "UPDATE_NEW_TE"
 }
 export type Payload = {
   id?: string;

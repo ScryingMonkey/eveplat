@@ -27,9 +27,6 @@ const SideBar: React.FunctionComponent<{}> = () => {
           </div>
         );
       })}
-      <div className="" onClick={() => addRoute()}>
-        Add Section (+)
-      </div>
     </div>
   );
 };

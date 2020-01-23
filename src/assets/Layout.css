@@ -1,6 +1,3 @@
-.test-border {
-  border: 1px solid red;
-}
 .sidebar {
   grid-area: sidebar;
   height: 90vh;

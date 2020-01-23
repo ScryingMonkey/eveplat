@@ -51,11 +51,13 @@ class Firebase {
     fb.colls[key].ref.onSnapshot(res => {
       let arr = res.docs.map(doc => {
         let t = new thing();
-        t.setConfig(doc.data().event);
+        // console.log(`recieving doc [${doc.data().id}] from fb...`);
+        // console.log(doc.data());
+        t.setConfig(doc.data());
         return t;
       });
       // console.log('...arr after map');
-      // console.log(arr);
+      // console.log(arr); 
       updateFunc(arr);
       // console.log(`Update coll [${key}]`);
       // console.log(arr);

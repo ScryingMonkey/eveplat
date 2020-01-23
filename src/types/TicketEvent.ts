@@ -11,33 +11,30 @@ export class TicketEvent {
   ticketsAvailable: Number;
   ticketsSold: Number;
   ticketCost: Number;
-  buyerDescriptions: string;
-  managerDescriptions: string;
+  buyerDescription: string;
+  managerDescription: string;
 
   constructor() {
     this.name = "";
     this.id = uuid.v4();
     this.venueId = "";
-    this.status = "";
+    this.status = "Inactive";
     this.creatorId = "";
     this.startDate = new Date();
     this.endDate = new Date();
-    this.ticketsAvailable = NaN;
-    this.ticketsSold = NaN;
-    this.ticketCost = NaN;
-    this.buyerDescriptions = "";
-    this.managerDescriptions = "";
+    this.ticketsAvailable = 0;
+    this.ticketsSold = 0;
+    this.ticketCost = 0;
+    this.buyerDescription = "";
+    this.managerDescription = "";
   }
   setConfig(o: object):void {
     Object.keys(o).forEach(k => {
       switch(k){
         case 'endDate':
         case 'startDate':
-          this[k] = (o[k].toDate());
-          console.log(`setconfig(): converted ts to date for ${k}: ${typeof o[k]} => ${typeof this[k]}`);
-          console.log(`name: ${o['name']}`)
-          console.log(o[k]);
-          console.log(this[k]);
+          // console.log(`updating startdate: <${typeof o[k]}> ${o[k]}`)
+          this[k] = (typeof o[k] == 'string')? o[k] : (o[k].toDate());
           break;
         case 'ticketsAvailable':
         case 'ticketSold':
@@ -48,7 +45,7 @@ export class TicketEvent {
           this[k] = o[k]
       }
     });
-    console.log(this);
+    // console.log(this);
   }
   getObject() {
     let o: { [key: string]: any } = {};

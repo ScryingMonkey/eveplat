@@ -37,16 +37,18 @@ export const globalReducer = (state, action: Action) => {
       let event = action.payload.event;
       // TODO: Update firebase with new event
 
-      return {...state, events: [...state, event]};
+      return {...state, event:{...state.event, events: [...state, event]}};
     case ActionType.DELETE_EVENT:
-      let newEvents = state.events.filter(e => e.id !== action.payload.id);
+      let newEvents = state.event.events.filter(e => e.id !== action.payload.id);
       // TODO: Delete event from fb.
-      return { ...state, events: newEvents };
+      return { ...state, event:{...state.event, events: newEvents }};
     case ActionType.UPDATE_EVENT:
       // TODO: Update event in fb.
-      return { ...state, events: [...state.events, action.payload.event] };
+      return { ...state, event:{...state.event, events: [...state.events, action.payload.event] }};
     case ActionType.SET_EVENTS:
-      return { ...state, events: [...action.payload.events] };
+      return { ...state, event:{...state.event, events: [...action.payload.events] }};
+    case ActionType.UPDATE_NEW_TE:
+      return {...state, event:{...state.event, newTe:{...state.newTe, te: action.payload.event}}}
     default:
       return state;
   }

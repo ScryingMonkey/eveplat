@@ -1,0 +1,18 @@
+.display-field {
+    /* width: 30vw; */
+    /* border: 1px dotted red; */
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+  }
+
+.display-field > .label {
+    align-content: left;
+  }
+.display-field > .value {
+    align-content: right;
+    border: 1px solid lightgray;
+  }
+  .display-field > .textfield {
+    display:block;
+  }

@@ -9,7 +9,15 @@
   --secondary-text-color: #757575;
   --inverted-text-color: #f8ebc5;
   --divider-color: #bdbdbd;
-  --test-border: 1px dotted red;
+
+  --button-background: var(--default-primary-color);
+  --button-background-hover: var(--light-primary-color);;
+  --button-save-background: rgb(49, 235, 80);
+  --button-save-background-hover: rgb(133, 248, 152);
+  --button-subtle-background: rgb(214, 213, 213);
+  --button-subtle-background-hover: rgb(230, 230, 230);;
+
+  /* --test-border: 1px dotted red; */
 }
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
 
@@ -107,9 +115,9 @@ a {
 }
 .cb-list-header {
   margin: 0px;
-  padding: 10px 20px;
-  height: auto;
+  padding: 0px 20px;
   max-width: 700px;
+  height: auto;
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -119,15 +127,19 @@ a {
   font-size: 300%;
 }
 .cb-list-item {
-  padding: 10px;
-  margin: 10px 30px;
+  padding: 5px 10px;
+  margin: 5px 30px;
+  max-width: 700px;
 }
-.cb-list-item > header {
+.cb-list-item-header {
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  border: var(--test-border);
+
 }
+
 .cb-list-item > header > h1 {
   font-size: 2rem;
 }
@@ -142,3 +154,43 @@ a {
   align-items: center;
   background-color: var(--default-primary-color);
 }
+/* .cb-list-button-bar-2{
+  display:flex;
+  justify-content: space-between; 
+  margin: 5px 20px;
+}
+.cb-list-button-bar-2 > span {
+  flex: 0.49 0 50px;
+  border-radius: 0px;
+  padding: 5px;
+  text-align: center;
+}
+.cb-list-button-bar-2 > button {
+  flex: 2 1 150px;
+  width:inherit;
+  border-radius: 5px;
+} */
+/* .cb-list-button, .cb-list-item-save-button, .cb-list-item-cancel-button{
+  display:flex;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.cb-list-button {
+  background: var(--button-background)
+}
+.cb-list-button:hover {
+  background: var(--button-background-hover)
+}
+.cb-list-save-button{
+  background: var(--button-save-background)
+}
+.cb-list-save-button:hover {
+  background: var(--button-save-background-hover)
+}
+.cb-list-cancel-button{
+  background: var(--button-subtle-background)
+}
+.cb-list-cancel-button:hover {
+  background: var(--button-subtle-background-hover)
+} */

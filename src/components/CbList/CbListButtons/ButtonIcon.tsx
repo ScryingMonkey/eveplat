@@ -1,7 +1,7 @@
 import React from "react";
-import "./ButtonIcon.css";
-import delete01 from "../../assets/icons/delete01.png";
-import edit01 from "../../assets/icons/edit01.png";
+import "../CbList.css";
+import delete01 from "../../../assets/icons/delete01.png";
+import edit01 from "../../../assets/icons/edit01.png";
 
 const ButtonIcon: React.FC<{
   icon: string;
@@ -12,7 +12,6 @@ const ButtonIcon: React.FC<{
   const shape = props.round ? "round" : "square";
 
   const icons = {
-    "": "",
     delete: delete01,
     edit: edit01
   };

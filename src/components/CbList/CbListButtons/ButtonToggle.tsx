@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ButtonToggle.css";
+import "../CbList.css";
 
 const ButtonToggle: React.FunctionComponent<{
   toggleHandler: () => void;

@@ -8,26 +8,24 @@ const ContentEvents:React.FC<
 > = props => {
 
   const [showAddEvent, setShowAddEvent] = useState(false);
-  const {state} = useContext(AppContext);
+  const {state,f} = useContext(AppContext);
 
   const toggleAddEvent = () => {
-    setShowAddEvent(!showAddEvent );
+    setShowAddEvent(!showAddEvent);    
   };
  
   return (
     <div className="content">
       <CbListHeader
-        toggleLabel="Add Event (+)"
-        untoggleLabel="Save"
-        toggleHandler={toggleAddEvent}
+        title="Events"
       />
-      {showAddEvent ? (
-        <AddTicketEvent />
-      ) : (
-        <Suspense fallback={<div>"Loading..."</div>}>
-          <EventsList events={state.events} className="" />
-        </Suspense>
-      )}
+      <Suspense fallback={<div>"Loading..."</div>}>
+          {(state.event.events.length === 0) ?
+            (<div>Loading...</div>) : //TODO: Replace with Loading component
+            (<EventsList events={state.event.events} className="" />)
+          }
+          
+      </Suspense>
     </div>
   );
 }

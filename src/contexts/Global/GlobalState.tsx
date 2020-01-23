@@ -24,33 +24,41 @@ interface ClassThing {
 
 const GlobalState = props => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
+  
   const sendDispatch = (type: ActionType, payload: Payload) => {
     let action: Action = { type: type, payload: payload };
     dispatch(action);
   };
-  const f =  {
-      addRoute: (route: CbRoute) => {
-        sendDispatch(ActionType.ADD_ROUTE, { route: route });
-      },    
-      addEvent: (eventId:string,te:any) => {  // TODO:Determine why TS is complaining that TicketEvent has no function getObject()
-        // sendDispatch(ActionType.ADD_EVENT,{event:event});
-        // const teo = te.getObject();
-        console.log(`addEvent(${eventId},${te})`);
-        console.log(`...callling fb.addDoc('events',${eventId},${te})`);
-        fb.addDoc('events',eventId,te);
-      },
-      deleteEvent: (event:TicketEvent) => {
-        // sendDispatch(ActionType.DELETE_EVENT,{event:event});
-        fb.deleteDoc('events',event.id);
-      },
-      updateEvent: (event:TicketEvent) => {
-        // sendDispatch(ActionType.UPDATE_EVENT,{event:event});
-        fb.setDoc("events", event.id, event)
-      },
-      setEvents: (events:TicketEvent[]) => {
-        sendDispatch(ActionType.SET_EVENTS,{events:events});
-      }
-    
+
+  const setEvent = (te:TicketEvent) => {
+    // sendDispatch(ActionType.UPDATE_EVENT,{event:event});
+    console.log(`updateEvent(${te})`);
+    const teo = te.getObject();
+    console.log(teo);
+    console.log(`...callling fb.addDoc('events',${teo.id},${teo})`);
+    fb.setDoc("events", teo.id, teo)
+  }
+  const setEvents = (te:TicketEvent[]) => {
+    sendDispatch(ActionType.SET_EVENTS,{events:te});
+  }
+  const deleteEvent = (te:TicketEvent) => {
+    // sendDispatch(ActionType.DELETE_EVENT,{event:event});
+    fb.deleteDoc('events',te.id);
+  }
+  const updateNewTe = (te:TicketEvent) => {
+    sendDispatch(ActionType.UPDATE_NEW_TE, {event:te});
+    console.log('GlobalState.updateNewTe: updated newTe.');
+    console.log(state.newTe);
+  }
+
+  const f = {
+    dispatch: dispatch,
+    sendDispatch: sendDispatch,
+    addEvent: setEvent,
+    setEvent: setEvent,
+    setEvents: setEvents,
+    deleteEvent: deleteEvent,
+    updateNewTe: updateNewTe,
   };
 
   const setUpFirebase =(fb:Firebase):void => {
@@ -72,7 +80,7 @@ const GlobalState = props => {
   // }
 
   useEffect(()=> {
-    console.log("GlobalState did mount.");
+    console.log("GlobalState mounted.  Setting up Firebase.");
     setUpFirebase(fb);
   },[]);
 

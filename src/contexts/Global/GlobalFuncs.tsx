@@ -18,16 +18,15 @@ const getUnixSecondsFromTimestampString = (s:string):number => {
     throw err;
   }
 }
-const convertToShortDate = (ts:any) => {
-  console.log(`...convertToShortDate(date)`);
-  const date = new Date(ts.seconds * 1000);
-  console.log(date);
+const convertToShortDate = (date:Date) => {
+  // console.log(`...convertToShortDate(date)`);
+  // console.log(date);
   return `${date.getDate()}/${date.getMonth()}/${date.getDate()}`;
 }
 
 const convertToLongDate = (date:Date) => {
-  console.log(`...convertToLongDate(date)`);
-  console.log(date);
+  // console.log(`...convertToLongDate(date)`);
+  // console.log(date);
   const monthNames = [
     "January", "February", "March", "April", "May", "June", "July", 
     "August", "September", "October", "November", "December"
