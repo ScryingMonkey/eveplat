@@ -1,0 +1,7 @@
+.cb-loading{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 30px;
+    font-size: 2rem;
+}

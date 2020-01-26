@@ -1,83 +1,97 @@
 import React, { useReducer, useEffect } from "react";
+import {Action,ActionType,Payload} from './GlobalReducer';
 import {
   AppContext,
   globalReducer,
-  Action,
-  ActionType,
-  CbRoute,
-  Payload,
   Firebase,
   fb
 } from "../_index";
 import initialState from "./InitialState";
-import {TicketEvent} from '../../types/TicketEvent';
-
-interface ClassThing {
-  id: string,
-  setConfig: (Object) => void,
-  getObject: () => Object
-}
-// const setThingInFirestore = (ref:any,thing:ClassThing) => {
-//   ref.doc(thing.id).set(thing.getObject())
-//     // .then(res => this.getEventsFromFirebase());
-// }
+import {TicketEvent, Venue} from '../../types/_index';
 
 const GlobalState = props => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
   
   const sendDispatch = (type: ActionType, payload: Payload) => {
-    let action: Action = { type: type, payload: payload };
+    let action: Action = { type: type, payload:{...payload, db:fb} };
     dispatch(action);
   };
+  const setEvents = (tes:TicketEvent[]) => {
+    sendDispatch(ActionType.SET_EVENTS, {events:tes});
+  }
+  const setVenues = (vs:Venue[]) => {
+    sendDispatch(ActionType.SET_VENUES, {venues:vs});
+  }
 
   const setEvent = (te:TicketEvent) => {
-    // sendDispatch(ActionType.UPDATE_EVENT,{event:event});
-    console.log(`updateEvent(${te})`);
-    const teo = te.getObject();
-    console.log(teo);
-    console.log(`...callling fb.addDoc('events',${teo.id},${teo})`);
-    fb.setDoc("events", teo.id, teo)
-  }
-  const setEvents = (te:TicketEvent[]) => {
-    sendDispatch(ActionType.SET_EVENTS,{events:te});
+    // console.log(`setEvent(${te})`);
+    sendDispatch(ActionType.SET_EVENT, {event:te});
   }
   const deleteEvent = (te:TicketEvent) => {
-    // sendDispatch(ActionType.DELETE_EVENT,{event:event});
-    fb.deleteDoc('events',te.id);
+    // console.log(`deleteEvent(${te})`);
+    sendDispatch(ActionType.DELETE_EVENT, {event:te});
   }
   const updateNewTe = (te:TicketEvent) => {
-    sendDispatch(ActionType.UPDATE_NEW_TE, {event:te});
     console.log('GlobalState.updateNewTe: updated newTe.');
-    console.log(state.newTe);
+    console.log(state.event.newTe);
+
+    let action: Action = { 
+      type: ActionType.SET_NEW_TE, 
+      payload:{event:te} 
+    };
+    dispatch(action);
   }
 
-  const f = {
-    dispatch: dispatch,
+  const setVenue = (v:Venue) => {
+    // console.log(`> setVenue(${te})`);
+    sendDispatch(ActionType.SET_VENUE, {venue:v});
+  }
+  const deleteVenue = (v:Venue) => {
+    console.log(`> deleteVenue(${v})`);
+    sendDispatch(ActionType.DELETE_VENUE, {venue:v});
+  }
+  const updateNewV = (v:Venue) => {
+    console.log('> GlobalState.updateNewV: [state.venue.newV]');
+    console.log(state.venue.newV);
+
+    let action: Action = { 
+      type: ActionType.SET_NEW_V, 
+      payload:{venue:v} 
+    };
+    dispatch(action);
+  }
+  const f:{
+    sendDispatch:(type: ActionType, payload: Payload)=>void;
+    saveEventToDb:(te:TicketEvent)=>void;
+    deleteEventFromDb:(te:TicketEvent)=>void;
+    updateNewTe:(te:TicketEvent)=>void;
+    saveVenueToDb:(v:Venue)=>void;
+    deleteVenueFromDb:(v:Venue)=>void;
+    updateNewV:(v:Venue)=>void;
+  } = {
     sendDispatch: sendDispatch,
-    addEvent: setEvent,
-    setEvent: setEvent,
-    setEvents: setEvents,
-    deleteEvent: deleteEvent,
+    saveEventToDb: setEvent,
+    deleteEventFromDb: deleteEvent,
     updateNewTe: updateNewTe,
+    saveVenueToDb: setVenue,
+    deleteVenueFromDb: deleteVenue,
+    updateNewV: updateNewV,
   };
 
   const setUpFirebase =(fb:Firebase):void => {
-    fb.subscribeToCollectionFromFirestore(fb,'events',TicketEvent,f.setEvents);
-    //TODO: set up venue subscription
+    fb.subscribeToCollectionFromFirestore(
+      fb,
+      'events',
+      TicketEvent,
+      setEvents
+    );
+    fb.subscribeToCollectionFromFirestore(
+      fb,
+      'venues',
+      Venue,
+      setVenues
+    );
   }
-
-  // const subscribeToCollectionFromFirestore =(fb:Firebase,key:string,thing:any,updateFunc:any)=> {
-  //   fb.colls[key].ref.onSnapshot(res => {
-  //     let arr = res.docs.map(doc => {
-  //       let t = new thing;
-  //       t.setConfig(doc.data());
-  //       return t;
-  //     });
-  //     updateFunc(arr);
-  //     console.log(`Update coll [${key}]`);
-  //     console.log(arr);
-  //   });
-  // }
 
   useEffect(()=> {
     console.log("GlobalState mounted.  Setting up Firebase.");

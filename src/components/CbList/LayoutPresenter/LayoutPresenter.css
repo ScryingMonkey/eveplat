@@ -1,9 +1,5 @@
-.layout-grid{
-    /* display: grid;
-    grid-column-gap: 5px;
-    grid-template-columns: 1fr; */
-    /* grid-template-areas:
-        "label-left" "info-left" "label-right" "info-right"; */
+.layout-wrapper{
+    margin: 0px 0px 30px 0px;
 }
 .layout-grid-numColls1{
     display:grid;

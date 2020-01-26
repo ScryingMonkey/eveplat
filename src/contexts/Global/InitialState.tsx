@@ -1,130 +1,127 @@
 import logo from "../../assets/logo.svg";
-import { TicketEvent } from "../../types/TicketEvent";
+import { TicketEvent, Venue } from "../../types/_index";
 import initialStyles, { InitialStyles } from "./InitialStyles";
 import appFuncs, { AppFuncs } from "./GlobalFuncs";
-import { CbRoute } from "../_index";
-import {Section,DataItem} from "../../components/CbList/_index";
-
-type Field = {
-  valueKey:string;
-  label:string;
-  type:string;
-  min?:string;
-  step?:string;
-}
-const eventFields:{[P: string]:Field} = {
-  name:{ valueKey: "name", label: "Name", type: "text" },
-  startDate:{ valueKey: "startDate", label: "Start Date", type: "date" },
-  endDate:{ valueKey: "endDate", label: "End Date", type: "date" },
-  ticketCost:{ valueKey: "ticketCost", label: "Ticket Cost", type: "number", min: "0", step:"0.01"},
-  ticketsAvailable:{ valueKey: "ticketsAvailable", label: "Tickets Available", type: "number", min:"0" },
-  ticketsSold:{ valueKey: "ticketsSold", label: "Tickets Sold", type: "number", min:"0" },
-  eventCost:{ valueKey: "eventCost", label: "Event Production Cost", type: "number", min: "0", step:"0.01" },
-  venueId:{ valueKey: "venueId", label: "Venue", type: "text" },
-  buyerDescrition:{ valueKey: "buyerDescrition", label: "Buyer's Description", type: "longtext" },
-  managerDescription:{ valueKey: "managerDescription", label: "Manager's Description", type: "longtext" }
-}
-type EventFields = typeof eventFields;
-const venueFields:{[P:string]:Field} = {
-  name:{ valueKey: "name", label: "Name", type: "text" },
-}
-type VenueFields = typeof venueFields;
+import {Section,} from "../../components/CbList/_index";
+import {CbRoute} from '../../types/_index';
 
 export type InitialState = {
   title: string;
   logo: string;
   event: {
-    newTe: {
-      te:TicketEvent;
-      addEventLayout:Section[]
-    }
+    newTe:TicketEvent;
+    addEventLayout:Section[];
     eventItemLayout:Section[];
     events: TicketEvent[];
   },
   venue: {
-    newVenue: {
-      venue: null;
-      addVenueLayout: Section[],
-    },
+    newV:Venue;
+    addVenueLayout: Section[];
     venueItemLayout:Section[];
-    venues: []; 
+    venues: Venue[]; 
   };
   routes: CbRoute[];
   styles: InitialStyles;
   funcs: AppFuncs;
 };
+
 const initialState: InitialState = {
   title: "Event Platform",
   logo: logo,
   event: {
-    newTe: {
-      te: new TicketEvent(),
-      addEventLayout: [
+    newTe:new TicketEvent(),
+    addEventLayout: [
         {
           'title': 'Name',
           'numColls':1,
           'colls':[
-            [ eventFields.name ],
+            [ TicketEvent.eventFields.name ],
           ],
         },{
           'title': 'Numbers',
           'numColls':2,
           'colls':[
-            [ eventFields.ticketsAvailable ],
-            [ eventFields.ticketCost, eventFields.eventCost ],
+            [ TicketEvent.eventFields.ticketsAvailable ],
+            [ TicketEvent.eventFields.ticketCost, TicketEvent.eventFields.eventCost ],
           ], 
         },{
           'title': 'Dates',
           'numColls':2,
           'colls':[
-            [ eventFields.startDate ],
-            [ eventFields.endDate ]
+            [ TicketEvent.eventFields.startDate ],
+            [ TicketEvent.eventFields.endDate ]
           ], 
         },{
           'title': 'Venue',
           'numColls':1,
           'colls':[
-            [ eventFields.venueId ]
+            [ TicketEvent.eventFields.venueId ]
           ], 
         },{
           'title': 'Descriptions',
           'numColls':1,
           'colls':[
-            [ eventFields.buyerDescrition, eventFields.managerDescription ]
+            [ TicketEvent.eventFields.buyerDescription, TicketEvent.eventFields.managerDescription ]
           ], 
         }
-      ]
-    },
+      ],
     eventItemLayout: [
       {
         'title': 'Event Summary',
         'numColls':2,
         'colls':[
-          [ eventFields.venueId ]
+          [ TicketEvent.eventFields.venueId ]
         ],
       },{
         'title' : 'Event Statistics',
         'numColls':2,
         'colls':[
-          [ eventFields.ticketCost, eventFields.eventCost ],
-          [ eventFields.ticketsAvailable, eventFields.ticketsSold ]
+          [ TicketEvent.eventFields.ticketCost, TicketEvent.eventFields.eventCost ],
+          [ TicketEvent.eventFields.ticketsAvailable, TicketEvent.eventFields.ticketsSold ]
         ],
       },{
         'title':'Descriptions',
         'numColls':1,
         'colls':[
-          [ eventFields.managerDescription, eventFields.buyerDescrition ]
+          [ TicketEvent.eventFields.managerDescription, TicketEvent.eventFields.buyerDescription ]
         ],
       },
     ],
     events: [],
   },
   venue: {
-    newVenue: {
-      venue: null,
-      addVenueLayout: [],
-    },
-    venueItemLayout: [],
+    newV:new Venue(),
+    addVenueLayout: [
+      {
+        'title': 'Summary',
+        'numColls':1,
+        'colls':[
+          [ Venue.venueFields.name ],
+        ],
+      },{
+        'title': 'Address',
+        'numColls':1,
+        'colls':[
+          [ Venue.venueFields.address ],
+        ],
+      }
+    ],
+    venueItemLayout: [
+      {
+        'title': 'Summary',
+        'numColls':1,
+        'colls':[
+          [ Venue.venueFields.name, Venue.venueFields.creatorId ],
+          [ Venue.venueFields.id ]
+        ],
+      },{
+        'title': 'Address',
+        'numColls':1,
+        'colls':[
+          [ Venue.venueFields.address ],
+        ],
+      }
+    ],
     venues: [],
   },
   routes: [

@@ -1,7 +1,6 @@
 import React from 'react';
 import "../CbList.css";
 import {parseButtonType, ButtonType} from '../_index';
-import { string } from 'prop-types';
 
 const HalfWidthButton:React.FC<{
     label: string;

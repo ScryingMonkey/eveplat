@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import initialState from "./InitialState";
 
-type AppContext = {
-  state: any;
+type AppContextType = {
+  state: typeof initialState;
   f: any;
 };
 
-const AppContext = createContext<Partial<AppContext>>({
+export const AppContext = createContext<Partial<AppContextType>>({
   state: initialState,
   f: {}
 });

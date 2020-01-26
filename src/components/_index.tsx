@@ -3,13 +3,18 @@ import SideBar from "./SideBar";
 import ContentPane from "./Content_Home";
 import Layout from "./Layout";
 import ContentVenues from "./Content_Venues";
-import ContentEvents, {
-  AddTicketEvent,
-  EventListItem,
-  EventsList
-} from "./Content_Events/_index";
+import ContentEvents from './ContentEvents';
 import ButtonToggle from "./CbList/CbListButtons/ButtonToggle";
-import { CbList, CbListHeader, CbListItem, InputField, DisplayField, LayoutPresenter } from "./CbList/_index";
+import { 
+  CbList, 
+  CbListHeader, 
+  CbListItem, 
+  InputField, 
+  DisplayField, 
+  LayoutPresenter,
+  StatusIndicator,
+  AddListItem,
+  Loading } from "./CbList/_index";
 import ButtonIcon from "./CbList/CbListButtons/ButtonIcon";
 
 export {
@@ -21,13 +26,13 @@ export {
   ContentVenues,
   InputField,
   DisplayField,
-  AddTicketEvent,
   ButtonToggle,
-  EventsList,
-  EventListItem,
   CbList,
   CbListHeader,
   CbListItem,
   ButtonIcon,
-  LayoutPresenter
+  LayoutPresenter,
+  StatusIndicator,
+  AddListItem, 
+  Loading, 
 };

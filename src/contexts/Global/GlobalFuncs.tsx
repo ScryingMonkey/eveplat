@@ -3,10 +3,6 @@
 const sidebarItemClick = (label: string) => {
   console.log(`...user clicked on [${label}]`);
 };
-const testFunc = () => {
-  alert("test function from context!");
-};
-
 // Date methods
 const getUnixSecondsFromTimestampString = (s:string):number => { 
   // let s = "Timestamp(seconds=1579574527, nanoseconds=985000000)";
@@ -33,13 +29,16 @@ const convertToLongDate = (date:Date) => {
   ];
   return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }
-
+const logObject = (row:any):string => {
+  console.log(row);
+  return '';
+}
 const appFuncs = {
   sidebarItemClick: sidebarItemClick,
-  testFunc: testFunc,
   getUnixSecondsFromTimestampString: getUnixSecondsFromTimestampString,
   convertToLongDate: convertToLongDate,
   convertToShortDate: convertToShortDate,
+  logObject:logObject,
 };
 export type AppFuncs = typeof appFuncs;
 export default appFuncs;

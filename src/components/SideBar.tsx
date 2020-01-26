@@ -1,17 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AppContext, CbRoute } from "../contexts/_index";
+import { AppContext } from "../contexts/_index";
+import {CbRoute} from '../types/_index';
 
 const SideBar: React.FunctionComponent<{}> = () => {
-  const { state, f } = useContext(AppContext);
-  const { routes, styles, funcs } = state;
+  const { routes, styles, funcs } = useContext(AppContext).state;
 
-  const addRoute = () => {
-    let nr: CbRoute = { label: "test", route: "test" };
-    f.addRoute(nr);
-    console.log("routes:");
-    console.log(routes.data);
-  };
   return (
     <div className={styles.sidebar}>
       {routes.map((route, index) => {

@@ -7,12 +7,15 @@ import "./InputField.css";
 const InputField: React.FunctionComponent<{
   name: string;
   label: string;
+  value:string;
+  valueKey?: string;
   type: string;
   min?: string;
   step?: string;
   changeHandler: (key: string, val: string) => void;
 }> = props => {
-  const [val, setVal] = useState("");
+  
+  const [val, setVal] = useState((props.value) ? props.value : "");
 
   const handleChange = e => {
     setVal(e.target.value);
@@ -22,7 +25,7 @@ const InputField: React.FunctionComponent<{
   return (
     <div className="input-field">
       <label>{props.label}</label>
-      {(props.type == 'longtext') ? (
+      {(props.type === 'longtext') ? (
         <textarea rows={5} onChange={handleChange}  className="textbox"/>
       ):(
         <input
