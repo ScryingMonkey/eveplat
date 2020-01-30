@@ -1,15 +1,17 @@
-.sidebar {
+.app-layout-sidebar {
   grid-area: sidebar;
   height: 90vh;
+  background-color: var(--default-primary-color);
 }
-.content {
+.app-layout-content {
   grid-area: content;
+  height: 90vh;
 }
-.header {
+.app-layout-header {
   grid-area: header;
   height: 10vh;
 }
-.wrapper {
+.app-layout-wrapper {
   display: grid;
   grid-gap: 0px;
   grid-template-columns: 15vw 85vw;

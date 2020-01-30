@@ -13,14 +13,14 @@ import "../assets/Layout.css";
 const Layout: React.FunctionComponent<{}> = () => {
   return (
     <BrowserRouter>
-      <div className="wrapper">
-        <div className="header">
+      <div className="app-layout-wrapper">
+        <div className="app-layout-header">
           <TopBar />
         </div>
-        <div className="sidebar">
+        <div className="app-layout-sidebar">
           <SideBar />
         </div>
-        <div className="content">
+        <div className="app-layout-content">
           <Switch>
             <Route exact path="/" component={ContentPane} />
             <Route exact path="/events" component={ContentEvents} />
