@@ -9402,11 +9402,6 @@ react@^16.12.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-reactfire@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/reactfire/-/reactfire-1.0.0.tgz#d62a6c0d854bae9fd1eee4f9c4128682fc35ff21"
-  integrity sha1-1ipsDYVLrp/R7uT5xBKGgvw1/yE=
-
 read-pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"

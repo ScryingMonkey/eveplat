@@ -1,7 +1,129 @@
+:root {
+    --default-color: blue;
+    --light-color: rgb(50, 50, 255);
+    --dark-color: rgb(0, 0, 150);
+    --transparent-color: rgba(0, 0, 255, 0.8);
+    --border-color: rgba(0, 0, 255);
+    --shadow-color: rgb(14, 14, 126);
+}
 .cb-loading{
     display: flex;
     justify-content: center;
     align-content: center;
     margin: 30px;
     font-size: 2rem;
+}
+
+.loading-label {
+    font-size: 2rem;
+}
+.wrapper {
+    margin: 10px 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.box {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background: var(--default-color);
+    border: 3px groove var(--border-color);
+    /* border-style: groove; */
+    animation: 1.5s linear 0s infinite;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 0px;
+}
+.circle {
+    border-radius: 100%;
+}
+.farleft {
+    animation-name: leftslide;
+}
+.left {
+    padding:5px;
+}
+.center{
+    padding: 10px;
+}
+.right {
+    padding:5px;
+}
+.farright {
+    animation-name: rightslide;
+}
+.blink {
+    animation: 2s linear 0s infinite;
+    animation-name: blink;
+}
+
+@keyframes rightslide {
+0% {
+    transform: translate(0px,0px);
+    background: var(--default-color);
+}
+25% {
+    transform: translate(50px,0px);
+    background: var(--border-color);
+}
+50% {
+    transform: translate(-1px,0px);
+    background: var(--default-color);
+}
+60% {
+    transform: translate(3px,0px);  }
+62% {
+    transform: translate(0px,0px);  }
+100% {
+    transform: translate(0px,0px);  }
+}
+
+@keyframes centerbump {
+0% {
+    transform: translate(0px,0px);
+}
+52% {
+    transform: translate(0px,0px);
+}
+54% {
+    transform: translate(0px,0px);
+}
+56% {
+    transform: translate(0px,0px);
+}
+75% {
+    transform: translate(0px,0px);
+}
+96% {
+    transform: translate(0px,0px);
+}
+98% {
+    transform: translate(2px,0px);
+}
+}
+
+@keyframes leftslide {
+0% {
+    right: 0px;
+}
+10% {
+    transform: translate(-3px,0px);
+}
+12% {
+    transform: translate(0px,0px);
+}
+50% {
+    transform: translate(0px,0px);
+    background: var(--default-color);
+}
+75% {
+    transform: translate(-50px,0px);
+    background: var(--border-color);
+}
+100% {
+    transform: translate(0px,0px);
+    background: var(--default-color);
+}
 }

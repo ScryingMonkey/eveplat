@@ -1,35 +1,30 @@
 import uuid from "uuid";
 import {Field} from '../components/CbList/_index';
 
-type EventFields = {
-  name:Field;
-  id:Field;
-  status:Field;
-  creatorId:Field;
-  startDate:Field;
-  endDate:Field;
-  ticketCost:Field;
-  ticketsAvailable:Field;
-  ticketsSold:Field;     
-  eventCost:Field;     
-  venueId:Field;     
-  buyerDescription:Field;     
-  managerDescription:Field;     
-  }
+
+type EventField = {
+  valueKey: keyof TicketEvent;
+  label:string;
+  type:string;
+  min?:string;
+  step?:string;
+}
+type EventFields = {[key:string]:EventField}  
 
 export default class TicketEvent {
-  name: string;
-  id: string;
-  venueId: string;
-  status: string;
-  creatorId: string;
-  startDate: Date;
-  endDate: Date;
-  ticketsAvailable: Number;
-  ticketsSold: Number;
-  ticketCost: Number;
-  buyerDescription: string;
-  managerDescription: string;
+  name: string = "";
+  id: string = "";
+  venueId: string = "";
+  status: string = "Active";
+  creatorId: string = "";
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+  ticketsAvailable: Number = NaN;
+  ticketsSold: Number = NaN;
+  eventCost: Number = NaN;
+  ticketCost: Number = NaN;
+  buyerDescription: string = "";
+  managerDescription: string = "";
 
   static eventFields:EventFields = {
     name:{ valueKey: "name", label: "Name", type: "text" },
